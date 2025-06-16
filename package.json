@@ -9,16 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@lottiefiles/dotlottie-react": "^0.12.3",
+    "@mui/material": "^6.4.4",
+    "aos": "^2.3.4",
+    "lucide": "^0.469.0",
+    "lucide-react": "^0.474.0",
+    "mui": "^0.0.1",
+    "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "react-swipeable-views": "^0.14.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/aos": "^3.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-swipeable-views": "^0.13.6",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
