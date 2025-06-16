@@ -18,6 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0KRJFJJVHH"></Script>
+            <Script defer src="https://cloud.umami.is/script.js" data-website-id="7dc5bb1f-bdaf-4bc6-a983-02aaf0108c2a"></Script>
             <title>Nguyen Trong An | Portfolio Frontend Developer</title>
             <body className={inter.className}>{children}</body>
         </html>

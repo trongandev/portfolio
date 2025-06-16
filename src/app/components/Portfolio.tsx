@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { ArrowRight, Award, Boxes, Code, ExternalLink, Github, LucideShovel, Newspaper, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
 const Project = [
@@ -71,7 +71,7 @@ const techStacks = [
     { icon: "sass.svg", language: "SASS" },
     { icon: "tailwindcss.svg", language: "Tailwind CSS" },
     { icon: "ant-design-dark-theme.svg", language: "Ant Design" },
-    { icon: "shadcn-ui.svg", language: "Shadcn UI" },
+    { icon: "shadcn-ui_dark.svg", language: "Shadcn UI" },
     { icon: "bootstrap.svg", language: "Bootstrap" },
     { icon: "json.svg", language: "JSON" },
     { icon: "firebase.svg", language: "Firebase" },
@@ -84,15 +84,15 @@ const techStacks = [
     { icon: "vitejs.svg", language: "ViteJS" },
     { icon: "tanstack.svg", language: "Tanstack" },
     { icon: "nodejs.svg", language: "Node JS" },
-    { icon: "expressjs.svg", language: "Express JS" },
+    { icon: "expressjs_dark.svg", language: "Express JS" },
     { icon: "nestjs.svg", language: "NestJS" },
     { icon: "postman.svg", language: "Postman" },
-    { icon: "socketio-light.svg", language: "Socket IO" },
+    { icon: "socketio-dark.svg", language: "Socket IO" },
     { icon: "jwt.svg", language: "JWT" },
-    { icon: "clerk-light.svg", language: "Clerk" },
-    { icon: "vercel.svg", language: "Vercel" },
-    { icon: "github.svg", language: "Github" },
-    { icon: "aws_light.svg", language: "AWS" },
+    { icon: "clerk-dark.svg", language: "Clerk" },
+    { icon: "vercel_dark.svg", language: "Vercel" },
+    { icon: "github_dark.svg", language: "Github" },
+    { icon: "aws_dark.svg", language: "AWS" },
 ];
 
 interface TabPanelProps {
@@ -123,11 +123,40 @@ function a11yProps(index: number) {
     };
 }
 
+const ToggleButton = ({ onClick, isShowMore }: any) => (
+    <button
+        onClick={onClick}
+        className="relative group px-3 py-1.5 text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 transition-all duration-300 rounded-md border border-white/10 hover:border-white/20 backdrop-blur-sm overflow-hidden ">
+        <span className="flex gap-1 items-center">
+            {isShowMore ? "See Less" : "See More"}
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`transition-transform duration-300 
+          ${isShowMore ? "group-hover:-translate-y-0.5" : "group-hover:translate-y-0.5"}
+        `}>
+                <polyline points={isShowMore ? "18 15 12 9 6 15" : "6 9 12 15 18 9"}></polyline>
+            </svg>
+        </span>
+        <span className="absolute bg-purple-500/50 transition-all duration-300 w-0 h-0.5 group-hover:w-full bottom-0 left-0"></span>
+    </button>
+);
+
 const Projects = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {Project.map((project, index) => (
-                <div className="group relative w-full group">
+                <div
+                    className="group relative w-full group"
+                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}>
                     <div className="relative h-full rounded-xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20 p-5 ">
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
 
@@ -168,34 +197,35 @@ const Projects = () => {
 
 const Certificates = () => {
     return (
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-5">
-            {techStacks.map((teck, index) => (
-                <div key={index} className="group relative w-full">
-                    <div className="relative h-32 rounded-lg bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20 p-5 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
-                        <Image src={`/icons/${teck.icon}`} alt={teck.language} width={40} height={40} className="w-12 h-12 object-contain" />
-                        <span className="text-white font-semibold mt-2">{teck.language}</span>
-                    </div>
-                </div>
-            ))}
-        </div>
+        // <div className="grid grid-cols-3 md:grid-cols-6 gap-5">
+        //     {techStacks.map((teck, index) => (
+        //         <div key={index} className="group relative w-full">
+        //             <div className="relative h-32 rounded-lg bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20 p-5 flex items-center justify-center">
+        //                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300 -z-10"></div>
+        //                 <Image src={`/icons/${teck.icon}`} alt={teck.language} width={40} height={40} className="w-12 h-12 object-contain" />
+        //                 <span className="text-white font-semibold mt-2">{teck.language}</span>
+        //             </div>
+        //         </div>
+        //     ))}
+        // </div>
+        <div className="flex items-center justify-center h-25">Nothing certifications...</div>
     );
 };
 
-const TechStack = () => {
+const TechStack = ({ index, icon, language }: any) => {
     return (
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-5">
-            {techStacks.map((tech, index) => (
-                <div className="bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 flex items-center justify-center p-6" key={index}>
-                    <div className="relative">
-                        <div className="absolute"></div>
-                        <div className="relative w-[80px] h-[80px]">
-                            <Image src={`/tech-stack/${tech.icon}`} alt="" fill className="absolute object-cover"></Image>
-                        </div>
-                        <h1 className="text-center mt-3 font-semibold">{tech.language}</h1>
-                    </div>
+        <div
+            className="bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 flex items-center flex-col gap-2 justify-center p-6 rounded-2xl shadow-lg group hover:scale-105 cursor-pointer hover:shadow-xl"
+            key={index}
+            data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+            data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}>
+            <div className="relative ">
+                <div className="absolute -inset-1 opacity-0 group-hover:opacity-50 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur"></div>
+                <div className="relative w-[80px] h-[80px]">
+                    <Image src={`/tech-stack/${icon}`} alt={`${language} icon`} fill className="absolute "></Image>
                 </div>
-            ))}
+            </div>
+            <h1 className="text-center mt-3 font-semibold text-sm md:text-base text-slate-300 tracking-wide group-hover:text-white transition-colors duration-300">{language}</h1>
         </div>
     );
 };
@@ -203,9 +233,22 @@ const TechStack = () => {
 export default function Portfolio() {
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-
+    const [showTechStack, setShowTechStack] = useState(false);
+    const contentRef = useRef(null);
+    const isMobile = window.innerWidth < 768;
+    const initialItems = isMobile ? 6 : 12;
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
+    };
+
+    const displayedCertificates = showTechStack ? techStacks : techStacks.slice(0, initialItems);
+
+    const handleChangeToggleButton = () => {
+        setShowTechStack((prev) => !prev);
+        if (contentRef.current) {
+            const element = contentRef.current as HTMLElement;
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     };
     return (
         <div className=" text-white flex items-center justify-center text-3xl flex-col mt-20" id="Portfolio">
@@ -292,10 +335,20 @@ export default function Portfolio() {
                             <Projects />
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
-                            <Certificates />
+                            {/* <Certificates /> */}
+                            <div className="flex items-center justify-center h-[450px]">Nothing certifications...</div>
                         </TabPanel>
                         <TabPanel value={value} index={2} dir={theme.direction}>
-                            <TechStack />
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-5" ref={contentRef}>
+                                {displayedCertificates.map((tech: any, index: number) => (
+                                    <TechStack index={index} icon={tech.icon} language={tech.language} />
+                                ))}
+                            </div>
+                            {techStacks.length > initialItems && (
+                                <div className="mt-5">
+                                    <ToggleButton onClick={() => handleChangeToggleButton()} />
+                                </div>
+                            )}
                         </TabPanel>
                     </SwipeableViews>
                 </Box>

@@ -13,8 +13,8 @@ Tech Stack:
 -   Material UI
 
 Link Website:
-https://www.trongandev.vercel.app/
+https://trongandev.vercel.app/
 
 ## Preview
 
-![Portfolio Preview](https://github.com/trongandev/assets/preview-portfolio-image.jpg)
+![Portfolio Preview](https://github.com/trongandev/portfolio/blob/main/public/banner.png?raw=true)
