@@ -4,22 +4,19 @@ import AnimatedBackground from "./components/AnimatedBackground";
 import HomeComponent from "./components/Home";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
 export default function Home() {
     return (
-        <div className="">
+        <div className="overflow-x-hidden">
             <Navbar />
             <AnimatedBackground />
-            <div className="px-[10%] flex justify-between items-center flex-col relative z-1 text-white">
-                <div className="">
-                    <HomeComponent />
-                    <About />
+            <div className="px-6 lg:px-[10%] flex justify-between items-center flex-col relative z-1 text-white">
+                <HomeComponent />
+                <About />
 
-                    <Portfolio />
-                    <div className="h-screen text-white flex items-center justify-center text-3xl" id="Contact">
-                        Contact
-                    </div>
-                </div>
+                <Portfolio />
             </div>
+            <Contact />
         </div>
     );
 }

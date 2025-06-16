@@ -1,0 +1,169 @@
+"use client";
+import { Linkedin, Mail, MessageSquare, Send, Share2, User } from "lucide-react";
+import React, { useState } from "react";
+import Loading from "./Loading";
+import Link from "next/link";
+import Image from "next/image";
+export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Swal.fire({
+        //   title: 'Sending Message...',
+        //   html: 'Please wait while we send your message',
+        //   allowOutsideClick: false,
+        //   didOpen: () => {
+        //     Swal.showLoading();
+        //   }
+        // });
+
+        // try {
+        //   // Get form data
+        //   const form = e.target;
+        //   const formData = new FormData(form);
+
+        //   // Submit form
+        //   await form.submit();
+
+        //   // Show success message
+        //   Swal.fire({
+        //     title: 'Success!',
+        //     text: 'Your message has been sent successfully!',
+        //     icon: 'success',
+        //     confirmButtonColor: '#6366f1',
+        //     timer: 2000,
+        //     timerProgressBar: true
+        //   });
+
+        //   // Reset form
+        //   setFormData({
+        //     name: "",
+        //     email: "",
+        //     message: "",
+        //   });
+        // } catch (error) {
+        //   Swal.fire({
+        //     title: 'Error!',
+        //     text: 'Something went wrong. Please try again later.',
+        //     icon: 'error',
+        //     confirmButtonColor: '#6366f1'
+        //   });
+        // } finally {
+        //   setIsSubmitting(false);
+        // }
+    };
+    return (
+        <div className=" text-white flex items-center justify-center text-3xl flex-col px-3 md:px-6 " id="Portfolio">
+            <div className="text-center">
+                <h2 className=" bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text font-black text-transparent text-5xl" data-aos="zoom-in-up" data-aos-duration="600">
+                    Contact me
+                </h2>
+                <p className="mt-2 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg flex items-center justify-center gap-2" data-aos="zoom-in-up" data-aos-duration="800">
+                    Got a question? Send me a message, and I'll get back to you soon.
+                </p>
+            </div>
+            <div className="mt-10 flex gap-10 flex-col md:flex-row w-full">
+                <div className="bg-white/5 backdrop-blur-xl p-5 md:p-10 w-[35%] rounded-3xl shadow-2xl ">
+                    <div className="flex justify-between">
+                        <div className="">
+                            <h2 className=" bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text font-black text-transparent text-4xl" data-aos="zoom-in-up" data-aos-duration="600">
+                                Get in touch
+                            </h2>
+                            <p className="mt-2 text-gray-400 max-w-2xl  text-base sm:text-md" data-aos="zoom-in-up" data-aos-duration="800">
+                                Have something to discuss? Send me a message and let's talk.
+                            </p>
+                        </div>
+                        <div className="">
+                            <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
+                        </div>
+                    </div>
+                    <form action="https://formsubmit.co/ekizulfarrachman@gmail.com" method="POST" onSubmit={handleSubmit} className="space-y-6 mt-5">
+                        <div className="relative group ">
+                            <User className="absolute translate-y-[100%] left-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                            <input
+                                type="text"
+                                placeholder="Your name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 pl-12 text-md bg-white/10 rounded-xl border border-white/20 text-white placeholder-gray-500 focus:outline-none  focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                            />
+                        </div>
+                        <div className="relative group ">
+                            <Mail className="absolute translate-y-[100%] left-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                            <input
+                                type="email"
+                                placeholder="Your email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                                className="w-full px-4 py-3 pl-12 text-md bg-white/10 rounded-xl border border-white/20 text-white placeholder-gray-500 focus:outline-none  focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                            />
+                        </div>
+                        <div className="relative group ">
+                            <MessageSquare className="absolute translate-y-[100%] left-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                            <textarea
+                                placeholder="Your message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                                className="w-full resize-none h-[9.9rem] px-4 py-3 pl-12 text-md bg-white/10 rounded-xl border border-white/20 text-white placeholder-gray-500 focus:outline-none  focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-3 rounded-xl font-semibold transition-all duration-300   hover:shadow-lg hover:shadow-[#6366f1]/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={isSubmitting}>
+                            {isSubmitting ? <Loading /> : <Send className="w-5 h-5" />}
+
+                            {isSubmitting ? "Seding..." : "Send Message"}
+                        </button>
+                    </form>
+                    <div className="mt-10 pt-6 border-t border-white/10 flex justify-center space-x-6">
+                        <div className="w-full bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-6 py-8 backdrop-blur-xl">
+                            <h3 className="text-xl font-semibold">
+                                <span className="inline-block w-8 h-1 bg-indigo-500 rounded-full mr-3"></span>Connect with me
+                            </h3>
+                            <div className="flex flex-col gap-4 mt-5">
+                                <Link
+                                    href="#"
+                                    className="flex items-center relative group p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500">
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r from-[#0A66C2] to-[#0077B5]"></div>
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative w-10 h-10">
+                                            <div className="absolute w-full h-full rounded-lg opacity-20 bg-[#0A66C2] transition-all duration-500 group-hover:scale-110 group-hover:opacity-30"></div>
+                                            <div className="relative p-2 rounded-md">
+                                                <Linkedin className="w-6 h-6  transition-all duration-500 group-hover:scale-105 text-[#0A66C2]" />
+                                            </div>
+                                        </div>
+                                        <div className="">
+                                            <h3 className="text-lg text-gray-200 group-hover:text-white transition-all duration-300">Let's Connect</h3>
+                                            <p className="text-sm text-gray-400 group-hover:text-gray-200 transition-all duration-300">on Linkedin</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-xl p-5 flex-1"></div>
+            </div>
+        </div>
+    );
+}

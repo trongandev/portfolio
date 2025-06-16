@@ -150,7 +150,7 @@ const HomeComponent = () => {
                     <CTAButton href="#Portfolio" text="Project" icon={ExternalLink} />
                     <CTAButton href="#Contact" text="Contact" icon={Mail} />
                 </div>
-                <div className="flex items-center gap-5" data-aos="fade-up" data-aos-delay="1600">
+                <div className="flex items-center gap-5 w-full justify-center md:justify-start" data-aos="fade-up" data-aos-delay="1600">
                     {SOCIAL_LINKS.map((social, index) => (
                         <SocialLink index={index} icon={social.icon} link={social.link} />
                     ))}
