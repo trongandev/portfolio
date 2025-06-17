@@ -122,7 +122,7 @@ export default function About() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-16 cursor-pointer">
                 {navItems.map((item, index) => (
-                    <Link href="#Portfolio" className="flex-1 relative group" data-aos={item.animation} data-aos-duration={1300}>
+                    <Link href="#Portfolio" className="flex-1 relative group" data-aos={item.animation} data-aos-duration={1300} key={index}>
                         <div className="h-44 relative overflow-hidden z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10  hover:scale-105 hover:shadow-2xl transition-all duration-300">
                             <div className="absolute bg-gradient-to-br from-[#6366f1] to-[#a855f7] -z-10 inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
                             <div className="flex items-center justify-between mb-4">

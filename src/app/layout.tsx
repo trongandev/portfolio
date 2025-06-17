@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,24 @@ export default function RootLayout({
             <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0KRJFJJVHH"></Script>
             <Script defer src="https://cloud.umami.is/script.js" data-website-id="7dc5bb1f-bdaf-4bc6-a983-02aaf0108c2a"></Script>
             <title>Nguyen Trong An | Portfolio Frontend Developer</title>
-            <body className={inter.className}>{children}</body>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta
+                name="description"
+                content="Portfolio of Nguyen Trong An, a Frontend Developer specializing in React, Next.js, and web development. Explore my projects, skills, and contact information."
+            />
+            <meta name="keywords" content="Nguyen Trong An, Frontend Developer, React, Next.js, web development, portfolio, projects, skills, contact" />
+            <meta name="author" content="Nguyen Trong An" />
+            <meta property="og:title" content="Nguyen Trong An | Portfolio Frontend Developer" />
+            <meta
+                property="og:description"
+                content="Explore the portfolio of Nguyen Trong An, a Frontend Developer specializing in React and Next.js. Discover my projects, skills, and how to contact me."
+            />
+            <meta property="og:image" content="/banner.png" />
+            <meta property="og:url" content="https://trongandev.vercel.app/" />
+            <body className={inter.className}>
+                <div className="">{children}</div>
+                <Footer />
+            </body>
         </html>
     );
 }

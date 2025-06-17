@@ -94,7 +94,7 @@ const Projects = ({ index, project }: any) => {
                             <span className="text-sm font-semibold">Github</span>
                         </Link>
                         <Link
-                            href="/project/1"
+                            href={`/project/${project.slug}`}
                             className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 transition-all duration-200 px-4 py-2 rounded-lg text-sm text-white/90 hover:scale-105 group">
                             <span className="text-sm font-medium">Detail</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all duration-500 group-hover:rotate-180" />
