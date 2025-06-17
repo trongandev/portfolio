@@ -1,7 +1,7 @@
 "use client";
-import { AppBar, Backdrop, Box, Modal, Tab, Tabs, Typography } from "@mui/material";
+import { AppBar, Backdrop, backdropClasses, Box, Modal, Tab, Tabs, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { ArrowRight, Award, Boxes, Code, ExternalLink, Github, LucideShovel, Newspaper, Phone, Scan } from "lucide-react";
+import { ArrowRight, Award, Boxes, Code, ExternalLink, Github, LucideShovel, Newspaper, Phone, Scan, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useRef, useState, useEffect } from "react";
@@ -106,32 +106,67 @@ const Projects = ({ index, project }: any) => {
     );
 };
 
-const Certificates = ({ open, setOpen }: any) => {
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
+    height: 650,
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+};
+
+const Certificates = ({ open, setOpen, item, index }: any) => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {certificates.map((item, index) => (
-                <div className="relative group hover:-translate-y-0.5 duration-300 transition-all">
-                    <div
-                        className=" p-3 bg-slate-800 rounded-lg object-cover  cursor-pointer"
-                        data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                        data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}>
-                        <div className="relative w-full h-[250px] rounded-md overflow-hidden group-hover:brightness-50 group-hover:-translate-y-1 transition-all duration-300 brightness-90">
-                            <Image src={`/${item.image}`} alt={item.image} className="absolute object-cover" fill />
-                        </div>
-                    </div>
-                    <div
-                        className="absolute  opacity-0 group-hover:opacity-100 w-full h-full top-0 right-0 left-0 bottom-0 group-hover:translate-y-0.5 duration-500 transition-all flex items-center justify-center flex-col gap-2 cursor-pointer"
-                        onClick={() => setOpen(true)}>
-                        <Scan />
-                        <span className="text-white font-bold drop-shadow-md text-lg">View Certificate</span>
-                    </div>
-                    <Modal open={open} onClose={() => setOpen(false)} className="w-[80%] h-[700px] absolute top-0 right-0 left-0 bottom-0 m-auto">
-                        <div className="relative w-full h-full rounded-md overflow-hidden transition-all duration-300 ">
-                            <Image src={`/${item.image}`} alt={item.image} className="absolute object-cover" fill />
-                        </div>
-                    </Modal>
+        <div className="relative group hover:-translate-y-0.5 duration-300 transition-all w-full">
+            <div
+                className=" p-3 bg-slate-800 rounded-lg object-cover  cursor-pointer"
+                data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}>
+                <div className="relative w-full h-[250px] rounded-md overflow-hidden group-hover:brightness-50 group-hover:-translate-y-1 transition-all duration-300 brightness-90">
+                    <Image src={`/${item.image}`} alt={item.image} className="absolute object-cover" fill />
                 </div>
-            ))}
+            </div>
+            <div
+                className="absolute  opacity-0 group-hover:opacity-100 w-full h-full top-0 right-0 left-0 bottom-0 group-hover:translate-y-0.5 duration-500 transition-all flex items-center justify-center flex-col gap-2 cursor-pointer"
+                onClick={() => setOpen(true)}>
+                <Scan />
+                <span className="text-white font-bold drop-shadow-md text-lg">View Certificate</span>
+            </div>
+            <Modal
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 300,
+                    sx: {
+                        backgroundColor: "rgba(0, 0, 0, 0.2)",
+                        backdropFilter: "blur(5px)",
+                    },
+                }}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: 0,
+                    padding: 0,
+                    "& .MuiBackdrop-root": {
+                        backgroundColor: "rgba(0, 0, 0, 0.2)",
+                    },
+                }}>
+                <Box sx={style}>
+                    <div className="relative w-full h-full  transition-all duration-300 ">
+                        <Image src={`/${item.image}`} alt={item.image} className="absolute object-contain" fill />
+                    </div>
+                    <div
+                        className="absolute top-7 right-3 bg-gray-900/50 rounded-full p-1 cursor-pointer hover:scale-110 hover:bg-gray-900/80 transition-all duration-300 text-white"
+                        onClick={() => setOpen(false)}>
+                        <X className="w-6 h-6 " />
+                    </div>
+                </Box>
+            </Modal>
         </div>
     );
 };
@@ -210,7 +245,7 @@ export default function Portfolio() {
         }
     };
     return (
-        <div className=" text-white flex items-center justify-center text-3xl flex-col mt-20" id="Portfolio">
+        <div className=" text-white flex items-center justify-center text-3xl flex-col mt-20 w-full" id="Portfolio">
             <div className="text-center">
                 <h2 className=" bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text font-black text-transparent text-5xl" data-aos="zoom-in-up" data-aos-duration="600">
                     Portfolio Showcase
@@ -291,7 +326,7 @@ export default function Portfolio() {
                     </AppBar>
                     <SwipeableViews index={value} onChangeIndex={setValue}>
                         <TabPanel value={value} index={0} dir={theme.direction}>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-5" ref={contentProjectRef}>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pb-[5%]" ref={contentProjectRef}>
                                 {displayedProject.map((project, index) => (
                                     <Projects index={index} project={project} />
                                 ))}
@@ -303,11 +338,14 @@ export default function Portfolio() {
                             )}
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
-                            <Certificates open={open} setOpen={setOpen} />
-                            {/* <div className="flex items-center justify-center h-[450px]">Nothing certifications...</div> */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 w-full pb-[5%]">
+                                {certificates.map((item, index) => (
+                                    <Certificates open={open} setOpen={setOpen} item={item} index={index} />
+                                ))}
+                            </div>
                         </TabPanel>
                         <TabPanel value={value} index={2} dir={theme.direction}>
-                            <div className="grid grid-cols-3 md:grid-cols-6 gap-5 overflow-x-hidden" ref={contentRef}>
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-5 overflow-x-hidden pb-[5%]" ref={contentRef}>
                                 {displayedCertificates.map((tech: any, index: number) => (
                                     <TechStack index={index} icon={tech.icon} language={tech.language} />
                                 ))}

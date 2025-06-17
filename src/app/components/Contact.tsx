@@ -1,9 +1,10 @@
 "use client";
-import { Linkedin, Mail, MessageSquare, Send, Share2, User } from "lucide-react";
+import { ExternalLink, Linkedin, Mail, MessageSquare, Send, Share2, User } from "lucide-react";
 import React, { useState } from "react";
 import Loading from "./Loading";
 import Link from "next/link";
 import Image from "next/image";
+import Swal from "sweetalert2";
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
@@ -24,49 +25,49 @@ export default function Contact() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Swal.fire({
-        //   title: 'Sending Message...',
-        //   html: 'Please wait while we send your message',
-        //   allowOutsideClick: false,
-        //   didOpen: () => {
-        //     Swal.showLoading();
-        //   }
-        // });
+        Swal.fire({
+            title: "Sending Message...",
+            html: "Please wait while we send your message",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
 
-        // try {
-        //   // Get form data
-        //   const form = e.target;
-        //   const formData = new FormData(form);
+        try {
+            // Get form data
+            const form = e.target;
+            const formData = new FormData(form);
 
-        //   // Submit form
-        //   await form.submit();
+            // Submit form
+            await form.submit();
 
-        //   // Show success message
-        //   Swal.fire({
-        //     title: 'Success!',
-        //     text: 'Your message has been sent successfully!',
-        //     icon: 'success',
-        //     confirmButtonColor: '#6366f1',
-        //     timer: 2000,
-        //     timerProgressBar: true
-        //   });
+            // Show success message
+            Swal.fire({
+                title: "Success!",
+                text: "Your message has been sent successfully!",
+                icon: "success",
+                confirmButtonColor: "#6366f1",
+                timer: 2000,
+                timerProgressBar: true,
+            });
 
-        //   // Reset form
-        //   setFormData({
-        //     name: "",
-        //     email: "",
-        //     message: "",
-        //   });
-        // } catch (error) {
-        //   Swal.fire({
-        //     title: 'Error!',
-        //     text: 'Something went wrong. Please try again later.',
-        //     icon: 'error',
-        //     confirmButtonColor: '#6366f1'
-        //   });
-        // } finally {
-        //   setIsSubmitting(false);
-        // }
+            // Reset form
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+            });
+        } catch (error) {
+            Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again later.",
+                icon: "error",
+                confirmButtonColor: "#6366f1",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
     return (
         <div className=" text-white flex items-center justify-center text-3xl flex-col px-3 md:px-6 " id="Portfolio">
@@ -79,7 +80,7 @@ export default function Contact() {
                 </p>
             </div>
             <div className="mt-10 flex gap-10 flex-col md:flex-row w-full">
-                <div className="bg-white/5 backdrop-blur-xl p-5 md:p-10 w-[35%] rounded-3xl shadow-2xl ">
+                <div className="bg-white/5 backdrop-blur-xl p-5 md:p-10 w-full md:w-[35%] rounded-3xl shadow-2xl ">
                     <div className="flex justify-between">
                         <div className="">
                             <h2 className=" bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text font-black text-transparent text-4xl" data-aos="zoom-in-up" data-aos-duration="600">
@@ -143,7 +144,7 @@ export default function Contact() {
                             <div className="flex flex-col gap-4 mt-5">
                                 <Link
                                     href="#"
-                                    className="flex items-center relative group p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500">
+                                    className="flex items-center justify-between relative group p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500">
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r from-[#0A66C2] to-[#0077B5]"></div>
                                     <div className="flex items-center gap-4">
                                         <div className="relative w-10 h-10">
@@ -155,6 +156,13 @@ export default function Contact() {
                                         <div className="">
                                             <h3 className="text-lg text-gray-200 group-hover:text-white transition-all duration-300">Let's Connect</h3>
                                             <p className="text-sm text-gray-400 group-hover:text-gray-200 transition-all duration-300">on Linkedin</p>
+                                        </div>
+                                    </div>
+                                    <ExternalLink className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform  group-hover:translate-x-0 -translate-x-1 -rotate-90 group-hover:rotate-0" />
+                                    {/* shine effect */}
+                                    <div className="absolute opacity-0 inset-0 group-hover:opacity-100 pointer-events-none overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                                            {" "}
                                         </div>
                                     </div>
                                 </Link>

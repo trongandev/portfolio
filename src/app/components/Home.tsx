@@ -109,8 +109,8 @@ const HomeComponent = () => {
         }`,
     };
     return (
-        <div className=" flex items-center justify-between flex-col lg:flex-row mt-20 " id="Home">
-            <div className="flex flex-col items-start gap-5  w-full ">
+        <div className=" flex items-center justify-between flex-col lg:flex-row mt-20 w-full" id="Home">
+            <div className="flex flex-col items-start gap-5  flex-1">
                 <div className="relative group cursor-pointer animate-float" data-aos="zoom-in" data-aos-delay="400">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
                     <div className="relative px-3 sm:px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
@@ -157,7 +157,7 @@ const HomeComponent = () => {
                 </div>
             </div>
             <div
-                className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative overflow-hidden flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0 mb-20 lg:mb-0"
+                className="flex-1 py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative overflow-hidden flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0 mb-20 lg:mb-0"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 data-aos="fade-left"
