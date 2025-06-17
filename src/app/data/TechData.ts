@@ -31,4 +31,5 @@ export const techStacks = [
     { icon: "vercel_dark.svg", language: "Vercel" },
     { icon: "github_dark.svg", language: "Github" },
     { icon: "aws_dark.svg", language: "AWS" },
+    { icon: "docker.svg", language: "Docker" },
 ];

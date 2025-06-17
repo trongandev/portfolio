@@ -17,7 +17,7 @@ export default function DetailProject() {
         return <div className="text-transparent h-screen flex items-center justify-center text-5xl font-semibold  bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text">Project not found...</div>;
     }
     return (
-        <div className="w-full flex items-center justify-center flex-col ">
+        <div className="w-full flex items-center justify-center flex-col md:flex-row">
             <div className="fixed inset-0 -z-1">
                 <div className="absolute inset-0 h-full w-full bg-white/5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>{" "}
                 <div className="absolute -inset-[10px] opacity-20">
@@ -27,16 +27,16 @@ export default function DetailProject() {
                     <div className="absolute -bottom-8 left-20 w-72 md:w-96 h-72 md:h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse animation-delay-4000" />
                 </div>
             </div>
-            <div className="relative z-1 max-w-7xl  min-h-screen  p-5 mx-auto">
+            <div className="relative z-1 w-full md:max-w-7xl  min-h-screen  p-5 mx-auto">
                 <div className="w-full h-full flex items-center justify-center flex-col py-8 md:py-16 space-y-5">
-                    <div className="flex justify-start w-full">
+                    <div className="flex justify-start w-full flex-col md:flex-row gap-3 md:gap-0">
                         <button
-                            className="group inline-flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-xl rounded-xl text-white/90 transition-all duration-300 border border-white/10 hover:border-white/20"
+                            className="group flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-xl rounded-xl text-white/90 transition-all duration-300 border border-white/10 hover:border-white/20"
                             onClick={handleBack}>
                             <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
                             <span>Back</span>
                         </button>
-                        <div className="text-white/50 flex items-center gap-2 ml-4">
+                        <div className="text-white/50 flex items-center gap-2 md:ml-4">
                             <span>Project</span>
                             <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
                             <span className="text-white/90 truncate">{project.title}</span>
@@ -62,7 +62,7 @@ export default function DetailProject() {
                                         <div className="absolute inset-0 rounded-full border-x-2 border-blue-500/50 animate-spin blur-sm"></div>
                                     </div>
                                     <div className="">
-                                        <h1 className="text-blue-200 text-lg md:text-xl font-semibold">1</h1>
+                                        <h1 className="text-blue-200 text-lg md:text-xl font-semibold">{project.techStacks.length}</h1>
                                         <p className="text-gray-400 text-[10px] md:text-xs">Total Technologies</p>
                                     </div>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -76,7 +76,7 @@ export default function DetailProject() {
                                         <div className="absolute inset-0 rounded-full border-x-2 border-purple-500/50 animate-spin blur-sm"></div>
                                     </div>
                                     <div className="">
-                                        <h1 className="text-purple-200 text-lg md:text-xl font-semibold">1</h1>
+                                        <h1 className="text-purple-200 text-lg md:text-xl font-semibold">{project.features.length}</h1>
                                         <p className="text-gray-400 text-[10px] md:text-xs">Main features</p>
                                     </div>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -126,7 +126,7 @@ export default function DetailProject() {
                             </div>
                         </div>
                         <div className="flex-1">
-                            <div className="relative h-1/2 w-full border-2 border-white/10 rounded-xl hover:border-white/30 overflow-hidden group shadow-lg transition-all duration-300">
+                            <div className="relative h-64 md:h-1/2 w-full border-2 border-white/10 rounded-xl hover:border-white/30 overflow-hidden group shadow-lg transition-all duration-300">
                                 <Image src={project.image} alt="" className="absolute w-full h-full object-cover rounded-xl group-hover:scale-105 transition-all duration-300" fill></Image>
                             </div>
                             <div className="mt-10 border border-white/10 hover:border-white/20 rounded-2xl px-5 py-4 md:px-10 md:py-8 bg-white/[0.02]  shadow-lg backdrop-blur-xl transition-colors duration-300 group">

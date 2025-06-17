@@ -111,9 +111,9 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 800,
-    height: 650,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    width: "90%",
+    height: "60%",
+    backgroundColor: "rgba(0, 0, 0)",
 };
 
 const Certificates = ({ open, setOpen, item, index }: any) => {
@@ -157,7 +157,7 @@ const Certificates = ({ open, setOpen, item, index }: any) => {
                     },
                 }}>
                 <Box sx={style}>
-                    <div className="relative w-full h-full  transition-all duration-300 ">
+                    <div className="relativew-full h-full  transition-all duration-300 ">
                         <Image src={`/${item.image}`} alt={item.image} className="absolute object-contain" fill />
                     </div>
                     <div

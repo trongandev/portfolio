@@ -13,7 +13,7 @@ const socialLinks = [
         displayName: "Let's Connect",
         subText: "on LinkedIn",
         icon: Linkedin,
-        url: "https://www.linkedin.com/in/trongandev/",
+        url: "https://www.linkedin.com/in/troandev/",
         color: "#0A66C2",
         gradient: "from-[#0A66C2] to-[#0077B5]",
         isPrimary: true,
@@ -211,9 +211,9 @@ export default function Contact() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         key={index}
-                                        className={`flex items-center justify-between relative group p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500 ${
-                                            link.isPrimary ? "col-span-2" : ""
-                                        }`}>
+                                        className={`flex items-center justify-between relative group p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500  ${
+                                            link.isPrimary ? "col-span-2" : "col-span-2 md:col-span-1"
+                                        } `}>
                                         <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${link.gradient}`}></div>
                                         <div className="flex items-center gap-2">
                                             <div className="relative w-10 h-10">
